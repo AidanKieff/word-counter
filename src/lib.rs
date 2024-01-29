@@ -1,7 +1,9 @@
 use regex::Regex;
 
 pub fn stripper(s : &str) -> String {
-    let re = Regex::new(r"[!.,?\n]");
+    let re = Regex::new(r"[!.,?\n]").unwrap();
+    let result = re.replace_all(s, "");
+    result.to_string()
 }
 
 
@@ -13,6 +15,6 @@ mod tests {
 
     #[test]
     fn example_test() {
-        assert_eq!(disemvowel("This website is for losers LOL!"), "Ths wbst s fr lsrs LL!");
+        assert_eq!(stripper("This website is for losers LOL!!,.\n"), "This website is for losers LOL");
     }
 }
